@@ -13,6 +13,7 @@ import { canvasThemes } from "@/lib/canvas-theme";
 import { useConfigStore } from "@/stores/use-config-store";
 import { useThemeStore } from "@/stores/use-theme-store";
 import { NezhaiAuthActions } from "@/components/layout/nezhai-auth-actions";
+import { IS_DESKTOP_MODE, NEZHA_CANVAS_URL } from "@/constant/app-mode";
 
 type UserStatusActionsProps = {
     showConfig?: boolean;
@@ -38,7 +39,13 @@ export function UserStatusActions({ showConfig = true, variant = "default", onOp
 
     return (
         <div className="inline-flex shrink-0 items-center gap-1">
-            <NezhaiAuthActions variant={variant} />
+            {IS_DESKTOP_MODE ? (
+                <a href={NEZHA_CANVAS_URL} target="_blank" rel="noopener noreferrer" className="px-2 text-xs text-stone-600 transition hover:text-stone-950 dark:text-stone-300 dark:hover:text-white">
+                    {t("topNav.openOnlineCanvas")}
+                </a>
+            ) : (
+                <NezhaiAuthActions variant={variant} />
+            )}
             {onOpenPlugins ? (
                 <button type="button" className={naturalIconClass} style={iconStyle} onClick={onOpenPlugins} aria-label={t("topNav.plugins")} title={t("topNav.plugins")}>
                     <Puzzle className="size-4" />

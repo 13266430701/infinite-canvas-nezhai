@@ -9,6 +9,8 @@ data/
 .DS_Store
 .idea
 web/dist
+desktop/renderer-dist
+release/
 
 **/dist
 web/public/plugins

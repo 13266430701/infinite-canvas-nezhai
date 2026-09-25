@@ -348,6 +348,7 @@ export default {
         openConsole: "Open console",
         logout: "Sign out",
         logoutFailed: "Sign out failed. Please try again.",
+        openOnlineCanvas: "Open online canvas",
         loginNezhai: "Sign in to Nezhai",
     },
     home: {

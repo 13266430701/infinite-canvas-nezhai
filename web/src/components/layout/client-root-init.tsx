@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useConfigStore } from "@/stores/use-config-store";
 import { useNezhaiAuthStore } from "@/stores/use-nezhai-auth-store";
 import { usePromptSourceScheduler } from "@/hooks/use-prompt-source-scheduler";
+import { IS_DESKTOP_MODE } from "@/constant/app-mode";
 
 export function ClientRootInit({ children }: { children: ReactNode }) {
     const { message } = App.useApp();
@@ -18,6 +19,7 @@ export function ClientRootInit({ children }: { children: ReactNode }) {
     usePromptSourceScheduler();
 
     useEffect(() => {
+        if (IS_DESKTOP_MODE) return;
         void refreshNezhaiAuth();
         const onFocus = () => void refreshNezhaiAuth();
         const onVisibilityChange = () => {

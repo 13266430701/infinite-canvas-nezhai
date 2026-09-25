@@ -1,0 +1,41 @@
+{
+    "name": "nezhai-infinite-canvas-desktop",
+    "version": "0.1.0",
+    "description": "哪吒无限画布 Windows 桌面版",
+    "private": true,
+    "type": "module",
+    "main": "main.mjs",
+    "scripts": {
+        "build:renderer": "node build-renderer.mjs",
+        "start": "npm run build:renderer && electron .",
+        "dist": "npm run build:renderer && electron-builder --win --x64"
+    },
+    "devDependencies": {
+        "electron": "^44.4.5",
+        "electron-builder": "^26.15.3"
+    },
+    "build": {
+        "appId": "vip.nezhai.infinitecanvas",
+        "productName": "哪吒无限画布",
+        "asar": true,
+        "files": ["renderer-dist/**/*", "main.mjs", "package.json"],
+        "directories": {
+            "output": "../release"
+        },
+        "win": {
+            "target": [
+                { "target": "nsis", "arch": ["x64"] },
+                { "target": "portable", "arch": ["x64"] }
+            ]
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true,
+            "deleteAppDataOnUninstall": false,
+            "artifactName": "Nezhai-Infinite-Canvas-${version}-${arch}-installer.${ext}"
+        },
+        "portable": {
+            "artifactName": "Nezhai-Infinite-Canvas-${version}-${arch}-portable.${ext}"
+        }
+    }
+}

@@ -348,6 +348,7 @@ export default {
         openConsole: "进入控制台",
         logout: "退出登录",
         logoutFailed: "退出登录失败，请重试",
+        openOnlineCanvas: "打开线上画布",
         loginNezhai: "登录哪吒",
     },
     home: {
