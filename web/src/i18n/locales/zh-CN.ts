@@ -343,6 +343,12 @@ export default {
         shortcuts: "快捷键",
         lightTheme: "切换到浅色主题",
         darkTheme: "切换到深色主题",
+        checkingLogin: "检查登录状态…",
+        loggedIn: "已登录",
+        openConsole: "进入控制台",
+        logout: "退出登录",
+        logoutFailed: "退出登录失败，请重试",
+        loginNezhai: "登录哪吒",
     },
     home: {
         promptError: "获取提示词失败",

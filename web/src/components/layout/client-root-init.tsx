@@ -4,6 +4,7 @@ import { App } from "antd";
 import { useTranslation } from "react-i18next";
 
 import { useConfigStore } from "@/stores/use-config-store";
+import { useNezhaiAuthStore } from "@/stores/use-nezhai-auth-store";
 import { usePromptSourceScheduler } from "@/hooks/use-prompt-source-scheduler";
 
 export function ClientRootInit({ children }: { children: ReactNode }) {
@@ -12,8 +13,23 @@ export function ClientRootInit({ children }: { children: ReactNode }) {
     const handledConfigParams = useRef(false);
     const importChannelCredentials = useConfigStore((state) => state.importChannelCredentials);
     const openConfigDialog = useConfigStore((state) => state.openConfigDialog);
+    const refreshNezhaiAuth = useNezhaiAuthStore((state) => state.refresh);
 
     usePromptSourceScheduler();
+
+    useEffect(() => {
+        void refreshNezhaiAuth();
+        const onFocus = () => void refreshNezhaiAuth();
+        const onVisibilityChange = () => {
+            if (document.visibilityState === "visible") void refreshNezhaiAuth();
+        };
+        window.addEventListener("focus", onFocus);
+        document.addEventListener("visibilitychange", onVisibilityChange);
+        return () => {
+            window.removeEventListener("focus", onFocus);
+            document.removeEventListener("visibilitychange", onVisibilityChange);
+        };
+    }, [refreshNezhaiAuth]);
 
     useEffect(() => {
         if (handledConfigParams.current) return;

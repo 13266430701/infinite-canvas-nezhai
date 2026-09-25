@@ -343,6 +343,12 @@ export default {
         shortcuts: "Keyboard shortcuts",
         lightTheme: "Switch to light theme",
         darkTheme: "Switch to dark theme",
+        checkingLogin: "Checking login…",
+        loggedIn: "Signed in",
+        openConsole: "Open console",
+        logout: "Sign out",
+        logoutFailed: "Sign out failed. Please try again.",
+        loginNezhai: "Sign in to Nezhai",
     },
     home: {
         promptError: "Failed to load prompts",
